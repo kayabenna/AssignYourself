@@ -1,10 +1,4 @@
-async function fetchMockData() {
-  return await fetch("../mockData.json")
-    .then((response) => response.json())
-    .then((data) => {
-      return data;
-    });
-}
+import MOCK_DATA from "../mockData.js";
 
 function getModuleTitle() {
   const searchParams = new URLSearchParams(window.location.search);
@@ -86,7 +80,7 @@ function createLeftSection(data) {
   return left.firstElementChild;
 }
 
-function tableEntry(assignment,due, status) {
+function tableEntry(assignment, due, status) {
   return `
         <tr>
             <td>${assignment}</td>
@@ -135,7 +129,9 @@ function createAssignmentsSection(data) {
 
   let entries = [];
   for (let assignment of module.assignments) {
-    entries.push(tableEntry(assignment.title, assignment.due, userAssignmentStatus(data, assignment.title)));
+    entries.push(
+      tableEntry(assignment.title, assignment.due, userAssignmentStatus(data, assignment.title))
+    );
   }
 
   const assignmentsSectionHTML = `
@@ -225,8 +221,8 @@ function createFooter(data) {
   document.body.appendChild(footer);
 }
 
-document.addEventListener("DOMContentLoaded", async () => {
-  const data = await fetchMockData();
+document.addEventListener("DOMContentLoaded", () => {
+  const data = MOCK_DATA;
   createWrapper(data);
   createFooter(data);
   getModuleTitle(data);
