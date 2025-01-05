@@ -56,12 +56,10 @@ function userTotalPoints(data) {
 
 function createWrapper(data) {
   const left = createLeftSection(data).outerHTML;
-  const right = createRightSection(data).outerHTML;
 
   const wrapperHTML = `
         <div class="wrapper">
             ${left}
-            ${right}
         </div>
     `;
 
@@ -86,20 +84,6 @@ function createLeftSection(data) {
   const left = document.createElement("div");
   left.innerHTML = leftHTML;
   return left.firstElementChild;
-}
-
-function createRightSection(data) {
-  const achievementsSection = createAchievementsSection(data).outerHTML;
-
-  const rightHTML = `
-                <div class="right">
-                    ${achievementsSection}
-                </div>
-        `;
-
-  const right = document.createElement("div");
-  right.innerHTML = rightHTML;
-  return right.firstElementChild;
 }
 
 function tableEntry(assignment, status) {
@@ -218,25 +202,6 @@ function createPresentationsSection(data) {
   const presentationsSection = document.createElement("div");
   presentationsSection.innerHTML = presentationsSectionHTML;
   return presentationsSection.firstElementChild;
-}
-
-function createAchievementsSection(data) {
-  const achievementsSection = document.createElement("div");
-  achievementsSection.className = "section achievements";
-
-  const achievementsHeader = document.createElement("h2");
-  achievementsHeader.textContent = "Achievements";
-  achievementsSection.appendChild(achievementsHeader);
-
-  const achievementsList = document.createElement("ul");
-  achievementsList.innerHTML = `
-        <li>🟢 Erste Abgabe</li>
-        <li>🟢 Alle Abgaben</li>
-        <li>🟢 Volle Punktzahl</li>
-    `;
-  achievementsSection.appendChild(achievementsList);
-
-  return achievementsSection;
 }
 
 function createFooter(data) {
