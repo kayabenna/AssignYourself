@@ -86,10 +86,11 @@ function createLeftSection(data) {
   return left.firstElementChild;
 }
 
-function tableEntry(assignment, status) {
+function tableEntry(assignment,due, status) {
   return `
         <tr>
             <td>${assignment}</td>
+            <td>${due}</td>
             <td>${status}</td>
             <td>
                 <button class="download-button ${
@@ -134,7 +135,7 @@ function createAssignmentsSection(data) {
 
   let entries = [];
   for (let assignment of module.assignments) {
-    entries.push(tableEntry(assignment.title, userAssignmentStatus(data, assignment.title)));
+    entries.push(tableEntry(assignment.title, assignment.due, userAssignmentStatus(data, assignment.title)));
   }
 
   const assignmentsSectionHTML = `
@@ -144,8 +145,9 @@ function createAssignmentsSection(data) {
                 <table class="assignment-table">
                     <tr>
                         <th>Submission</th>
+                        <th>Due</th>
                         <th>Status</th>
-                        <th>Aktionen</th>
+                        <th>Actions</th>
                     </tr>
                     ${entries.join("")}
                 </table>
@@ -162,12 +164,12 @@ function createAssignmentsSection(data) {
   return assignmentsSection.firstElementChild;
 }
 
-function createPresentationsLine(date, room, tutor) {
+function CreatePresentationsRow(date, room, tutor) {
   return `	<tr>
     <td>${date}</td>
     <td>${room}</td>
     <td>${tutor}</td>
-    <td>
+    </tr>
     `;
 }
 
@@ -187,7 +189,7 @@ function createPresentationsSection(data) {
                     </tr>
                     ${presentations
                       .map((presentation) =>
-                        createPresentationsLine(
+                        CreatePresentationsRow(
                           presentation.date,
                           presentation.room,
                           presentation.tutor

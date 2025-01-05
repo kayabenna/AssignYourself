@@ -35,7 +35,7 @@ body {
 
 .wrapper {
   display: flex;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
   flex-direction: row;
   gap: 5rem;
@@ -44,13 +44,6 @@ body {
   margin-right: 3vw;
 }
 
-.left {
-  width: 50vw;
-}
-
-.right {
-  flex: 1;
-}
 
 .back-button {
   background-color: #000000;
@@ -83,14 +76,20 @@ body {
 .assignmentWrapper {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: start;
   background-color: #3f6996;
 }
 
 .assignment-table-container,
 .presentation-table-container {
   max-height: 20vh;
+  padding-left: 2rem;
+  padding-right: 2rem;
   overflow-y: auto;
+}
+
+.assignment-table-container{
+  border-bottom: 2px solid black;
 }
 
 h1 {
@@ -170,16 +169,6 @@ th {
 
 .submit-button:hover {
   background-color: #218838;
-}
-
-.achievements ul {
-  list-style: none;
-  padding: 0;
-}
-
-.achievements li {
-  margin-bottom: 5px;
-  font-size: 16px;
 }
 
 .tutors p {
