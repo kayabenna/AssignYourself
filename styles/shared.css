@@ -6,6 +6,7 @@ body {
 }
 
 .buttons {
+  margin-top: 5.5vh;
   display: flex;
   justify-content: space-around;
 }
@@ -17,10 +18,13 @@ body {
   text-align: center;
   text-decoration: none;
   background-color: #fff;
+  color: #000000;
+  font-size: 1rem;
+  font-weight: bold;
 }
 
 .button:hover {
-  background-color: #f0f0f0;
+  background-color: #eee5cc;
 }
 
 header {
@@ -29,7 +33,7 @@ header {
   margin-bottom: 16px;
   align-items: center;
   flex-direction: row;
-  background-color: gray;
+  background-color: rgb(200, 200, 200);
   padding-left: 4rem;
   padding-right: 4rem;
 }
@@ -57,4 +61,8 @@ header {
   padding: 1rem;
   padding-left: 1.5rem;
   padding-right: 1.5rem;
+}
+
+.back-button:hover {
+  background-color: #333;
 }

@@ -221,9 +221,32 @@ function createFooter(data) {
   document.body.appendChild(footer);
 }
 
+function initButtons() {
+  const submitButton = document.querySelector(".submit-button");
+  const downloadButtons = document.querySelectorAll(".download-button");
+  const correctionButtons = document.querySelectorAll(".correction-button");
+
+  submitButton.addEventListener("click", () => {
+    alert("Submit functionality to be implemented");
+  });
+
+  downloadButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      alert("Download functionality to be implemented");
+    });
+  });
+
+  correctionButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      alert("view correction functionality to be implemented");
+    });
+  });
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   const data = MOCK_DATA;
   createWrapper(data);
   createFooter(data);
   getModuleTitle(data);
+  initButtons();
 });

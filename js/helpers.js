@@ -3,7 +3,8 @@ export function getNextDueAssignment(assignments) {
 
   for (let assignment of assignments) {
     if (new Date(assignment.due) > currentDate) {
-      return dueDate;
+      return "due next: " + new Date(assignment.due).toLocaleDateString();
     }
   }
+  return "no upcoming assignments";
 }

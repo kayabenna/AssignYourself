@@ -1,9 +1,24 @@
-.achievementLabel{
-  font-size: 20px; 
+.achievementLabel {
+  font-size: 1.45rem;
 }
 
-.checkboxList{
+.checkboxList {
   list-style: none;
   padding: 0;
   float: left;
+}
+
+.achievementBox {
+  border: 2px solid #000;
+  width: 1.25rem;
+  height: 1.25rem;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.achievementBox:hover {
+  pointer-events: none;
+}
+.achievementBox input[type="checkbox"]:not(:checked) + label {
+  background-color: #f0f0f0;
 }
