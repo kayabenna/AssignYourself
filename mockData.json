@@ -1,0 +1,115 @@
+{
+  "modules": [
+    {
+      "title": "Programmieren 1",
+      "assignments": [
+        {
+          "title": "Assignment 1",
+          "due": "2023-11-20"
+        },
+        {
+          "title": "Assignment 2",
+          "due": "2023-11-25"
+        }
+      ]
+    },
+    {
+      "title": "Grundlagen der Betriebssysteme",
+      "assignments": [
+        {
+          "title": "Assignment 1",
+          "due": "2023-12-05"
+        },
+        {
+          "title": "Assignment 2",
+          "due": "2023-12-10"
+        },
+        {
+          "title": "Assignment 3",
+          "due": "2023-12-15"
+        },
+        {
+          "title": "Assignment 4",
+          "due": "2023-12-20"
+        },
+        {
+          "title": "Assignment 5",
+          "due": "2023-12-25"
+        }
+      ]
+    }
+  ],
+
+  "users": [
+    {
+      "name": "Max Mustermann",
+      "id": "1",
+      "modules": [
+        {
+          "title": "Programmieren 1",
+
+          "presentationDates": [
+            {
+              "date": "2023-12-05",
+              "room": "A123",
+              "tutor": "Dr. John Doe"
+            },
+            {
+              "date": "2023-12-10",
+              "room": "A124",
+              "tutor": "Dr. Jane Doe"
+            }
+          ],
+
+          "assignments": [
+            {
+              "title": "Assignment 1",
+              "status": "done"
+            },
+            {
+              "title": "Assignment 2",
+              "status": "open"
+            }
+          ]
+        },
+        {
+          "title": "Grundlagen der Betriebssysteme",
+          "presentationDates": [
+            {
+              "date": "2023-12-05",
+              "room": "A123",
+              "tutor": "Dr. John Doe"
+            },
+            {
+              "date": "2023-12-10",
+              "room": "A124",
+              "tutor": "Dr. Jane Doe"
+            }
+          ],
+          "assignments": [
+            {
+              "title": "Assignment 1",
+              "status": "open"
+            },
+            {
+              "title": "Assignment 2",
+              "status": "open"
+            },
+            {
+              "title": "Assignment 3",
+              "status": "open"
+            },
+            {
+              "title": "Assignment 4",
+              "status": "open"
+            },
+            {
+              "title": "Assignment 5",
+              "status": "open"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
