@@ -1,6 +1,5 @@
 body {
   font-family: Arial, sans-serif;
-
   height: 100vh;
   margin: 0;
   background-color: #f9f9f9;
@@ -24,17 +23,23 @@ body {
   background-color: #f0f0f0;
 }
 
-.headerDiv {
+
+header{
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 16px;
   flex-direction: row;
   background-color: gray;
+  padding-left: 4rem;
+  padding-right: 4rem;
 }
 
 .header {
   font-size: 2rem;
   font-weight: bold;
+}
+
+.content{
   padding-left: 4rem;
 }
