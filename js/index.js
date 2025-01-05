@@ -44,7 +44,7 @@ function createTaskCard(module) {
 }
 
 function createLinkToModule(module) {
-  return `[module].html?title=${module.title}`;
+  return `pages/[module].html?title=${module.title}`;
 }
 
 fillModuleWrapper();

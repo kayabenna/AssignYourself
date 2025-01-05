@@ -67,11 +67,11 @@ body {
 }
 
 .moduleWrapper {
-  padding-left: 5rem;
-  padding-right: 5rem;
+  padding-left: 4rem;
+  padding-right: 4rem;
   padding-top: 2rem;
   display: flex;
-  justify-content: center;
+  justify-content: left;
   align-items: center;
   flex-wrap: wrap;
   gap: 24px;
@@ -87,7 +87,7 @@ body {
 }
 
 .header {
-  font-size: 3rem;
+  font-size: 2rem;
   font-weight: bold;
-  padding: 16px;
+  padding-left: 4rem;
 }
