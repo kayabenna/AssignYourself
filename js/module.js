@@ -55,40 +55,51 @@ function userTotalPoints(data) {
 }
 
 function createWrapper(data) {
-  const wrapper = document.createElement("div");
-  wrapper.className = "wrapper";
+  const left = createLeftSection(data).outerHTML;
+  const right = createRightSection(data).outerHTML;
 
-  const left = createLeftSection(data);
-  const right = createRightSection(data);
+  const wrapperHTML = `
+        <div class="wrapper">
+            ${left}
+            ${right}
+        </div>
+    `;
 
-  wrapper.appendChild(left);
-  wrapper.appendChild(right);
-
-  document.body.innerHTML = `<h1 class="module-header">unknown module</h1>`;
-  document.body.appendChild(wrapper);
+  document.body.innerHTML = `
+        <h1 class="module-header">unknown module</h1>
+        <a href="../index.html" class="back-button">back</a>
+        ${wrapperHTML}
+    `;
 }
 
 function createLeftSection(data) {
+  const assignmentsSection = createAssignmentsSection(data).outerHTML;
+  const presentationsSection = createPresentationsSection(data).outerHTML;
+
+  const leftHTML = `
+        <div class="left">
+            ${assignmentsSection}
+            ${presentationsSection}
+        </div>
+    `;
+
   const left = document.createElement("div");
-  left.className = "left";
-
-  const assignmentsSection = createAssignmentsSection(data);
-  const presentationsSection = createPresentationsSection(data);
-
-  left.appendChild(assignmentsSection);
-  left.appendChild(presentationsSection);
-
-  return left;
+  left.innerHTML = leftHTML;
+  return left.firstElementChild;
 }
 
 function createRightSection(data) {
+  const achievementsSection = createAchievementsSection(data).outerHTML;
+
+  const rightHTML = `
+                <div class="right">
+                    ${achievementsSection}
+                </div>
+        `;
+
   const right = document.createElement("div");
-  right.className = "right";
-
-  const achievementsSection = createAchievementsSection(data);
-  right.appendChild(achievementsSection);
-
-  return right;
+  right.innerHTML = rightHTML;
+  return right.firstElementChild;
 }
 
 function tableEntry(assignment, status) {
@@ -97,8 +108,12 @@ function tableEntry(assignment, status) {
             <td>${assignment}</td>
             <td>${status}</td>
             <td>
-                <button>Download</button>
-                <button>Korrektur</button>
+                <button class="download-button ${
+                  status.includes("done") ? "" : "unavailable"
+                }">download submission</button>
+                <button class="correction-button ${
+                  status.includes("done") ? "" : "unavailable"
+                }">view correction</button>
             </td>
         </tr>
     `;
@@ -131,13 +146,6 @@ function getUserData(data) {
 }
 
 function createAssignmentsSection(data) {
-  const assignmentsSection = document.createElement("div");
-  assignmentsSection.className = "section assignments";
-
-  const assignmentsHeader = document.createElement("h2");
-  assignmentsHeader.textContent = "Assignments";
-  assignmentsSection.appendChild(assignmentsHeader);
-
   const module = getModuleData(data);
 
   let entries = [];
@@ -145,28 +153,29 @@ function createAssignmentsSection(data) {
     entries.push(tableEntry(assignment.title, userAssignmentStatus(data, assignment.title)));
   }
 
-  const assignmentsTable = document.createElement("table");
+  const assignmentsSectionHTML = `
+        <div class="section assignments">
+            <h2 class="section-header">Assignments</h2>
+            <div class="assignment-table-container">
+                <table class="assignment-table">
+                    <tr>
+                        <th>Submission</th>
+                        <th>Status</th>
+                        <th>Aktionen</th>
+                    </tr>
+                    ${entries.join("")}
+                </table>
+            </div>
+            <div class="additional-content">
+                <p class="total-points">total points: <strong>${userTotalPoints(data)}</strong></p>
+                <button class="submit-button">submit assignment</button>
+            </div>
+        </div>
+    `;
 
-  assignmentsTable.innerHTML = `
-            <tr>
-                <th>Submission</th>
-                <th>Status</th>
-                <th>Aktionen</th>
-            </tr>
-            ${entries.join("")}
-        `;
-
-  assignmentsSection.appendChild(assignmentsTable);
-
-  const additionalContent = `
-    <div class="additional-content">
-        <p>total points: ${userTotalPoints(data)}</p>
-        <button class="add-assignment">submit assignment</button>
-    </div>
-`;
-  assignmentsSection.innerHTML += additionalContent;
-
-  return assignmentsSection;
+  const assignmentsSection = document.createElement("div");
+  assignmentsSection.innerHTML = assignmentsSectionHTML;
+  return assignmentsSection.firstElementChild;
 }
 
 function createPresentationsLine(date, room, tutor) {
@@ -179,34 +188,36 @@ function createPresentationsLine(date, room, tutor) {
 }
 
 function createPresentationsSection(data) {
-  const presentationsSection = document.createElement("div");
-  presentationsSection.className = "section presentations";
-
-  const presentationsHeader = document.createElement("h2");
-  presentationsHeader.textContent = "Pending Presentations";
-  presentationsSection.appendChild(presentationsHeader);
-
-  const presentationsTable = document.createElement("table");
   const module = getUserData(data);
   const presentations = module.presentations;
 
-  presentationsTable.innerHTML = `
-            <tr>
-                <th>date</th>
-                <th>room</th>
-                <th>tutor</th>
-            </tr>
-        `;
-  for (let presentation of presentations) {
-    presentationsTable.innerHTML += createPresentationsLine(
-      presentation.date,
-      presentation.room,
-      presentation.tutor
-    );
-  }
-  presentationsSection.appendChild(presentationsTable);
+  const presentationsSectionHTML = `
+        <div class="section presentations">
+            <h2 class="section-header">Pending Presentations</h2>
+            <div class="presentation-table-container">
+                <table>
+                    <tr>
+                        <th>date</th>
+                        <th>room</th>
+                        <th>tutor</th>
+                    </tr>
+                    ${presentations
+                      .map((presentation) =>
+                        createPresentationsLine(
+                          presentation.date,
+                          presentation.room,
+                          presentation.tutor
+                        )
+                      )
+                      .join("")}
+                </table>
+            </div>
+        </div>
+    `;
 
-  return presentationsSection;
+  const presentationsSection = document.createElement("div");
+  presentationsSection.innerHTML = presentationsSectionHTML;
+  return presentationsSection.firstElementChild;
 }
 
 function createAchievementsSection(data) {

@@ -23,8 +23,7 @@ body {
   background-color: #f0f0f0;
 }
 
-
-header{
+header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -40,6 +39,6 @@ header{
   font-weight: bold;
 }
 
-.content{
+.content {
   padding-left: 4rem;
 }

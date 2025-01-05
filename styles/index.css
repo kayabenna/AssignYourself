@@ -40,8 +40,6 @@
   margin-bottom: 16px;
 }
 
-
-
 .moduleWrapper {
   padding-left: 4rem;
   padding-right: 4rem;
@@ -52,5 +50,3 @@
   flex-wrap: wrap;
   gap: 24px;
 }
-
-
