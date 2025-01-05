@@ -82,12 +82,19 @@ button {
   cursor: pointer;
 }
 
+.additional-content {
+  margin-right: 5rem;
+  margin-left: 5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 button:hover {
   background-color: #0056b3;
 }
 
 .add-assignment {
-  margin-top: 10px;
   background-color: #28a745;
 }
 

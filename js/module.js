@@ -14,6 +14,46 @@ function getModuleTitle() {
   document.querySelector(".module-header").textContent = moduleTitle;
 }
 
+function isOverdue(assignmentTitle, moduleData) {
+  const assignment = moduleData.assignments.find((a) => a.title === assignmentTitle);
+  console.log(assignment);
+  return new Date(assignment.due) < Date.now();
+}
+
+function userAssignmentStatus(data, assignment) {
+  const userData = getUserData(data);
+  const moduleData = getModuleData(data);
+
+  let status;
+  for (let i = 0; i < userData.assignments.length; i++) {
+    if (userData.assignments[i].title === assignment) {
+      status = userData.assignments[i].status;
+    }
+  }
+  if (status === "open" && isOverdue(assignment, moduleData)) {
+    status = "overdue";
+  }
+  switch (status) {
+    case "open":
+      return "🟡 open";
+    case "done":
+      return "🟢 done";
+    case "overdue":
+      return "🔴 overdue";
+  }
+}
+
+function userTotalPoints(data) {
+  const userData = getUserData(data);
+  let totalPoints = 0;
+  for (let assignment of userData.assignments) {
+    if (assignment.status === "done") {
+      totalPoints += assignment.points;
+    }
+  }
+  return totalPoints;
+}
+
 function createWrapper(data) {
   const wrapper = document.createElement("div");
   wrapper.className = "wrapper";
@@ -64,34 +104,52 @@ function tableEntry(assignment, status) {
     `;
 }
 
+function getModuleData(data) {
+  const searchParams = new URLSearchParams(window.location.search);
+  const title = searchParams.get("title");
+
+  let res;
+  data.modules.forEach((module) => {
+    if (module.title === title) {
+      res = module;
+    }
+  });
+  return res;
+}
+
+function getUserData(data) {
+  const searchParams = new URLSearchParams(window.location.search);
+  const title = searchParams.get("title");
+
+  let res;
+  data.users[0].modules.forEach((module) => {
+    if (module.title === title) {
+      res = module;
+    }
+  });
+  return res;
+}
+
 function createAssignmentsSection(data) {
   const assignmentsSection = document.createElement("div");
   assignmentsSection.className = "section assignments";
 
   const assignmentsHeader = document.createElement("h2");
-  assignmentsHeader.textContent = "Abgaben";
+  assignmentsHeader.textContent = "Assignments";
   assignmentsSection.appendChild(assignmentsHeader);
 
-  const searchParams = new URLSearchParams(window.location.search);
-  const title = searchParams.get("title") || "unknown module";
-
-  let assignments = [];
-  data.modules.forEach((module) => {
-    if (module.title === title) {
-      assignments = module.assignments;
-    }
-  });
+  const module = getModuleData(data);
 
   let entries = [];
-  for (let assignment of assignments) {
-    entries.push(tableEntry(assignment.title, "assignment.status"));
+  for (let assignment of module.assignments) {
+    entries.push(tableEntry(assignment.title, userAssignmentStatus(data, assignment.title)));
   }
 
   const assignmentsTable = document.createElement("table");
 
   assignmentsTable.innerHTML = `
             <tr>
-                <th>Abgabe</th>
+                <th>Submission</th>
                 <th>Status</th>
                 <th>Aktionen</th>
             </tr>
@@ -100,16 +158,24 @@ function createAssignmentsSection(data) {
 
   assignmentsSection.appendChild(assignmentsTable);
 
-  const totalPoints = document.createElement("p");
-  totalPoints.textContent = "Insgesamt Punkte: 20";
-  assignmentsSection.appendChild(totalPoints);
-
-  const addAssignmentButton = document.createElement("button");
-  addAssignmentButton.className = "add-assignment";
-  addAssignmentButton.textContent = "Abgabe hinzufügen";
-  assignmentsSection.appendChild(addAssignmentButton);
+  const additionalContent = `
+    <div class="additional-content">
+        <p>total points: ${userTotalPoints(data)}</p>
+        <button class="add-assignment">submit assignment</button>
+    </div>
+`;
+  assignmentsSection.innerHTML += additionalContent;
 
   return assignmentsSection;
+}
+
+function createPresentationsLine(date, room, tutor) {
+  return `	<tr>
+    <td>${date}</td>
+    <td>${room}</td>
+    <td>${tutor}</td>
+    <td>
+    `;
 }
 
 function createPresentationsSection(data) {
@@ -117,24 +183,27 @@ function createPresentationsSection(data) {
   presentationsSection.className = "section presentations";
 
   const presentationsHeader = document.createElement("h2");
-  presentationsHeader.textContent = "Vorstellen";
+  presentationsHeader.textContent = "Pending Presentations";
   presentationsSection.appendChild(presentationsHeader);
 
   const presentationsTable = document.createElement("table");
+  const module = getUserData(data);
+  const presentations = module.presentations;
+
   presentationsTable.innerHTML = `
-        <tr>
-            <th>Datum</th>
-            <th>Wo</th>
-        </tr>
-        <tr>
-            <td>Morgen</td>
-            <td>7:11</td>
-        </tr>
-        <tr>
-            <td>In 2 Tagen</td>
-            <td>7:11</td>
-        </tr>
-    `;
+            <tr>
+                <th>date</th>
+                <th>room</th>
+                <th>tutor</th>
+            </tr>
+        `;
+  for (let presentation of presentations) {
+    presentationsTable.innerHTML += createPresentationsLine(
+      presentation.date,
+      presentation.room,
+      presentation.tutor
+    );
+  }
   presentationsSection.appendChild(presentationsTable);
 
   return presentationsSection;
@@ -164,16 +233,16 @@ function createFooter(data) {
   footer.className = "tutors";
 
   const tutorsHeader = document.createElement("h2");
-  tutorsHeader.textContent = "Tutoren";
+  tutorsHeader.textContent = "tutors";
   footer.appendChild(tutorsHeader);
 
-  const tutor1 = document.createElement("p");
-  tutor1.textContent = "Hanko Neumann";
-  footer.appendChild(tutor1);
+  const tutorsList = data.tutors;
 
-  const tutor2 = document.createElement("p");
-  tutor2.textContent = "Bennet Stüding";
-  footer.appendChild(tutor2);
+  for (let tutor of tutorsList) {
+    const tutorElement = document.createElement("p");
+    tutorElement.textContent = tutor;
+    footer.appendChild(tutorElement);
+  }
 
   document.body.appendChild(footer);
 }

@@ -48,7 +48,7 @@
         {
           "title": "Programmieren 1",
 
-          "presentationDates": [
+          "presentations": [
             {
               "date": "2023-12-05",
               "room": "A123",
@@ -64,17 +64,19 @@
           "assignments": [
             {
               "title": "Assignment 1",
-              "status": "done"
+              "status": "done",
+              "points": 20
             },
             {
               "title": "Assignment 2",
-              "status": "open"
+              "status": "open",
+              "points": 20
             }
           ]
         },
         {
           "title": "Grundlagen der Betriebssysteme",
-          "presentationDates": [
+          "presentations": [
             {
               "date": "2023-12-05",
               "room": "A123",
@@ -89,27 +91,34 @@
           "assignments": [
             {
               "title": "Assignment 1",
-              "status": "open"
+              "status": "open",
+              "points": 20
             },
             {
               "title": "Assignment 2",
-              "status": "open"
+              "status": "open",
+              "points": 20
             },
             {
               "title": "Assignment 3",
-              "status": "open"
+              "status": "open",
+              "points": 20
             },
             {
               "title": "Assignment 4",
-              "status": "open"
+              "status": "open",
+              "points": 20
             },
             {
               "title": "Assignment 5",
-              "status": "open"
+              "status": "open",
+              "points": 20
             }
           ]
         }
       ]
     }
-  ]
+  ],
+
+  "tutors": ["Hanko Neumann", "Kay Bennet Städing", "Thore Klattenberg", "Jan Koch"]
 }

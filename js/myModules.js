@@ -31,33 +31,14 @@ function createTaskCard(module) {
   const taskCard = document.createElement("div");
   taskCard.className = "taskCard";
 
-  const title = document.createElement("div");
-  title.className = "task-title";
-  title.textContent = module.title;
-
-  const info = document.createElement("div");
-  info.className = "task-info";
-  info.textContent = `due next: ${module.assignments[module.assignments.length - 1].due}`;
-
-  const buttons = document.createElement("div");
-  buttons.className = "buttons";
-
-  const openButton = document.createElement("a");
-  openButton.className = "button";
-  openButton.href = createLinkToModule(module);
-  openButton.textContent = "open";
-
-  const submitButton = document.createElement("a");
-  submitButton.className = "button";
-  submitButton.href = "#";
-  submitButton.textContent = "submit";
-
-  buttons.appendChild(openButton);
-  buttons.appendChild(submitButton);
-
-  taskCard.appendChild(title);
-  taskCard.appendChild(info);
-  taskCard.appendChild(buttons);
+  taskCard.innerHTML = `
+    <div class="task-title">${module.title}</div>
+    <div class="task-info">due next: ${module.assignments[module.assignments.length - 1].due}</div>
+    <div class="buttons">
+      <a class="button" href="${createLinkToModule(module)}">open</a>
+      <a class="button" href="#">submit</a>
+    </div>
+  `;
 
   return taskCard;
 }
