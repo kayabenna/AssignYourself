@@ -1,0 +1,165 @@
+.headerDiv {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  padding: 2rem;
+  gap: -1rem;
+  width: 20%;
+}
+
+#pending-assignments {
+  margin-left: 1rem;
+  font-size: 1.25rem;
+}
+
+#pending-assignments-num {
+  font-weight: bolder;
+  font-style: italic;
+}
+
+h1 {
+  margin-bottom: 1rem;
+  font-size: 3rem;
+}
+
+h2 {
+  margin-bottom: 1rem;
+  font-size: 1.75rem;
+  text-align: center;
+  margin-bottom: 5vh;
+}
+
+.tutor-container {
+  position: absolute;
+  top: 7%;
+  width: 50%;
+  left: 25%;
+}
+.assignment-item {
+  display: flex;
+  flex-direction: column;
+  background-color: #f9f9f9;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 100%;
+}
+
+.assignment-item:hover {
+  background-color: #c7c7c7;
+}
+
+.assignment-items {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10;
+  width: 100%;
+}
+
+.assignment-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  gap: 2rem;
+}
+
+.assignment-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 4px;
+  white-space: nowrap;
+}
+
+.assignment-stuff-wrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 4rem;
+  padding-right: 4rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.assignment-student {
+  font-size: 16px;
+  margin-bottom: 4px;
+  color: #555;
+}
+
+.assignment-status {
+  font-size: 14px;
+  font-weight: bold;
+  color: #dc3545;
+}
+
+.corrected {
+  color: #28a745;
+}
+
+.assignment-buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  width: 100%;
+  position: absolute;
+  right: -30vw;
+}
+
+button {
+  padding: 10px;
+  font-size: 14px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 10rem;
+}
+
+.download-button {
+  background-color: #007bff;
+  color: white;
+}
+
+.download-button:hover {
+  background-color: #0056b3;
+}
+
+.correction-button {
+  background-color: #28a745;
+  color: white;
+}
+
+.correction-button:hover {
+  background-color: #218838;
+}
+
+.upload-correction-button {
+  background-color: #ffc107;
+  color: white;
+}
+
+.upload-correction-button:hover {
+  background-color: #e0a800;
+}
+
+.unavailable {
+  background-color: #ccc;
+  cursor: not-allowed;
+  color: #666;
+}
+
+.unavailable:hover {
+  background-color: #ccc;
+}
+
+.upload-correction {
+  background-color: #17a2b8;
+  color: white;
+}
+
+.upload-correction:hover {
+  background-color: #138496;
+}

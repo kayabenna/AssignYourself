@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tutor Page</title>
+    <link rel="stylesheet" href="../styles/tutor.css" />
+    <!-- Add your CSS file -->
+  </head>
+  <body>
+    <input type="file" id="file" style="display: none" />
+    <label for="file" class="mocklabel" style="display: none"></label>
+    <div class="headerDiv">
+      <h1>Welcome, <span id="tutor-name"></span></h1>
+      <span id="pending-assignments"
+        >you have <span id="pending-assignments-num">no</span> pending assignments</span
+      >
+    </div>
+    <div id="tutor-container" class="tutor-container">
+      <!-- Incoming Assignments List -->
+      <div id="assignments-list">
+        <h2>Incoming Assignments</h2>
+        <ul id="assignment-items">
+          <!-- List of assignments will be populated here -->
+        </ul>
+      </div>
+    </div>
+  </body>
+  <script type="module" src="../js/tutor.js"></script>
+</html>

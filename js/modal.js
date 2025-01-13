@@ -37,6 +37,22 @@ const deleteConfirmationModal = `
   </div>
 </div>
 `;
+
+const tutorModal = `
+<div class="modal-content">
+  <span class="close-button">&times;</span>
+  <h2 class="modal-header">Sign In</h2>
+  <form class="tutor-form">
+    <input type="text" id="tutor" name="tutor" class="tutor-input" placeholder="Enter your name" required />
+    <br />
+    <input type="password" id="password" name="password" class="password-input" placeholder="Enter your password" required />
+    <br />
+    <button type="submit" class="modal-submit-button">Sign In</button>
+  </form>
+</div>
+
+`;
+
 export function showDeleteConfirmationModal(element) {
   const modal = document.getElementById("modal");
   modal.innerHTML = deleteConfirmationModal;
@@ -47,12 +63,26 @@ export function showDeleteConfirmationModal(element) {
     // wait half a second for the animation to finish
     setTimeout(() => {
       element.remove();
-    }, 200);
+    }, 400);
     modal.classList.add("hidden");
   });
   const dontDeleteButton = document.querySelector(".modal-dontdelete-button");
   dontDeleteButton.addEventListener("click", () => {
     modal.classList.add("hidden");
+  });
+  initModal();
+}
+
+export function showTutorModal(tutorPath) {
+  const modal = document.getElementById("modal");
+  modal.innerHTML = tutorModal;
+
+  // when clicking sign in open tutor.html
+  const signInButton = document.querySelector(".modal-submit-button");
+  signInButton.addEventListener("click", (event) => {
+    event.preventDefault();
+    const tutorName = document.getElementById("tutor").value;
+    window.location.href = `${tutorPath}?name=${encodeURIComponent(tutorName)}`;
   });
   initModal();
 }

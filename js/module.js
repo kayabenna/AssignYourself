@@ -1,5 +1,5 @@
 import MOCK_DATA from "../mockData.js";
-import { initModal, showSubmitModal } from "./modal.js";
+import { showTutorModal, showSubmitModal } from "./modal.js";
 
 function getModuleTitle() {
   const searchParams = new URLSearchParams(window.location.search);
@@ -208,7 +208,10 @@ function createFooter(data) {
 
   const footerHTML = `
     <footer class="tutors">
-      <h2>tutors</h2>
+    <div class="tutor-wrapper">
+      <h1>tutors</h1>
+      <button class="sign-in-button">Sign In</button>
+    </div>
       ${tutorsList}
     </footer>
     <div id="modal" class="modal hidden"></div>
@@ -238,6 +241,11 @@ function initButtons() {
     button.addEventListener("click", () => {
       mock.click();
     });
+  });
+
+  const signInButton = document.querySelector(".sign-in-button");
+  signInButton.addEventListener("click", () => {
+    showTutorModal("[tutor].html");
   });
 }
 

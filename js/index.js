@@ -1,5 +1,10 @@
 import MOCK_DATA from "../mockData.js";
-import { showSubmitModal, showAddModuleModal, showDeleteConfirmationModal } from "./modal.js";
+import {
+  showSubmitModal,
+  showAddModuleModal,
+  showDeleteConfirmationModal,
+  showTutorModal,
+} from "./modal.js";
 import { getNextDueAssignment } from "./util/helpers.js";
 
 function fillModuleWrapper() {
@@ -54,7 +59,28 @@ function initButtons() {
       showSubmitModal();
     });
   });
+  const signInButton = document.querySelector(".sign-in-button");
+  signInButton.addEventListener("click", () => {
+    showTutorModal("pages/[tutor].html");
+  });
+}
+
+function addTutors(data) {
+  const tutorsList = data.tutors.map((tutor) => `<p>${tutor}</p>`).join("");
+
+  const tutorHTML = `<div class="footerDiv"><footer class="tutors">
+    <div class="tutor-wrapper">
+      <h1>tutors</h1>
+      <button class="sign-in-button">Sign In</button>
+    </div>
+      ${tutorsList}
+    </footer>
+    </div>
+    <div id="modal" class="modal hidden"></div>`;
+
+  document.body.innerHTML += tutorHTML;
 }
 
 fillModuleWrapper();
+addTutors(MOCK_DATA);
 initButtons();

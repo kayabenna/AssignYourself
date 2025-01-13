@@ -167,3 +167,24 @@ th {
 .tutors p {
   margin: 5px 0;
 }
+
+.tutor-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  border-bottom: 2px solid #333;
+}
+
+.sign-in-button {
+  background-color: #777777;
+  color: #fff;
+  padding: 0.75rem 0.75rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.sign-in-button:hover {
+  color: #000000;
+  background-color: #929292;
+}

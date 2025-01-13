@@ -150,7 +150,7 @@
 }
 
 .modal-dontdelete-button {
-  background-color: #28a745;
+  background-color: #7eb32a;
   color: #fff;
 }
 
@@ -159,5 +159,27 @@
 }
 
 .to-be-deleted {
-  background-color: rgb(125, 81, 81);
+  animation: shrink 0.4s forwards;
+}
+
+@keyframes shrink {
+  from {
+    transform: scale(1);
+  }
+  to {
+    width: 0;
+    height: 0;
+    transform: scale(0);
+  }
+}
+
+.tutor-input,
+.password-input {
+  padding: 8px 12px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 85%;
+  align-self: center;
+  margin-bottom: 10px;
 }
