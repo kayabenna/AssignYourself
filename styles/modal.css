@@ -115,6 +115,49 @@
   width: 100%;
 }
 
-.modal-submit-button:hover {
-  background-color: #0056b3;
+.deletion-header {
+  font-size: 18px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.modal-confirmation-buttons {
+  margin-left: 4rem;
+  margin-right: 4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.modal-delete-button,
+.modal-dontdelete-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.modal-delete-button {
+  background-color: #91545a;
+  color: #fff;
+}
+
+.modal-delete-button:hover {
+  background-color: #c82333;
+}
+
+.modal-dontdelete-button {
+  background-color: #28a745;
+  color: #fff;
+}
+
+.modal-dontdelete-button:hover {
+  background-color: #396d44;
+}
+
+.to-be-deleted {
+  background-color: rgb(125, 81, 81);
 }
