@@ -1,4 +1,5 @@
 import MOCK_DATA from "../mockData.js";
+import { initModal, showSubmitModal } from "./modal.js";
 
 function getModuleTitle() {
   const searchParams = new URLSearchParams(window.location.search);
@@ -203,42 +204,39 @@ function createPresentationsSection(data) {
 }
 
 function createFooter(data) {
-  const footer = document.createElement("footer");
-  footer.className = "tutors";
+  const tutorsList = data.tutors.map((tutor) => `<p>${tutor}</p>`).join("");
 
-  const tutorsHeader = document.createElement("h2");
-  tutorsHeader.textContent = "tutors";
-  footer.appendChild(tutorsHeader);
-
-  const tutorsList = data.tutors;
-
-  for (let tutor of tutorsList) {
-    const tutorElement = document.createElement("p");
-    tutorElement.textContent = tutor;
-    footer.appendChild(tutorElement);
-  }
-
-  document.body.appendChild(footer);
+  const footerHTML = `
+    <footer class="tutors">
+      <h2>tutors</h2>
+      ${tutorsList}
+    </footer>
+    <div id="modal" class="modal hidden"></div>
+    <input type="file" id="file" style="display: none;" />
+    <label for="file" class="mocklabel" style="display: none;" />
+  `;
+  document.body.innerHTML += footerHTML;
 }
 
 function initButtons() {
   const submitButton = document.querySelector(".submit-button");
   const downloadButtons = document.querySelectorAll(".download-button");
   const correctionButtons = document.querySelectorAll(".correction-button");
+  const mock = document.getElementById("file");
 
   submitButton.addEventListener("click", () => {
-    alert("Submit functionality to be implemented");
+    showSubmitModal();
   });
 
   downloadButtons.forEach((button) => {
     button.addEventListener("click", () => {
-      alert("Download functionality to be implemented");
+      mock.click();
     });
   });
 
   correctionButtons.forEach((button) => {
     button.addEventListener("click", () => {
-      alert("view correction functionality to be implemented");
+      mock.click();
     });
   });
 }
