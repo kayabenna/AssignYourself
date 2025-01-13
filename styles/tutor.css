@@ -163,3 +163,23 @@ button {
 .upload-correction:hover {
   background-color: #138496;
 }
+
+.back-button {
+  background-color: #000000;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  position: absolute;
+  top: 1rem;
+  right: 2rem;
+  text-decoration: none;
+  padding: 1rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+.back-button:hover {
+  background-color: #333;
+}

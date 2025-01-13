@@ -1,4 +1,17 @@
-const students = ["Alice", "Bob", "Charlie", "David", "Eve"];
+const students = [
+  "Alice",
+  "Bob",
+  "Anna",
+  "Ben",
+  "Clara",
+  "David",
+  "Emma",
+  "Felix",
+  "Greta",
+  "Hans",
+  "Ingrid",
+  "Johann",
+];
 const assignments = [
   "Mathe 1: Assignment 1",
   "Mathe 1: Assignment 2",
@@ -17,6 +30,12 @@ const assignments = [
   "Programmieren 3: Assignment 3",
   "Programmieren 3: Assignment 4",
   "Programmieren 3: Assignment 5",
+
+  "Datenbanken: Assignment 1",
+  "Datenbanken: Assignment 2",
+  "Datenbanken: Assignment 3",
+  "Datenbanken: Assignment 4",
+  "Datenbanken: Assignment 5",
 ];
 
 function randomAssignmentData() {
@@ -40,6 +59,7 @@ function initAssignmentList() {
   for (let i = 0; i < 15; i++) {
     rndAssignments.push(randomAssignmentData());
   }
+  initPendingAssignmentsCount(rndAssignments);
 
   rndAssignments.forEach((assignment) => {
     addListElement(assignment);
@@ -73,6 +93,17 @@ function addListElement(assignment) {
     </div>
 `;
   document.getElementById("assignment-items").appendChild(listItem);
+}
+
+function initPendingAssignmentsCount(assignments) {
+  let cnt = 0;
+  for (let assignment of assignments) {
+    if (!assignment.corrected) {
+      cnt++;
+    }
+  }
+  const num = document.getElementById("pending-assignments-num");
+  num.textContent = cnt;
 }
 
 function initButtons() {
