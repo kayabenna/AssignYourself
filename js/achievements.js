@@ -48,19 +48,44 @@ function fillAchievementList() {
     const formattedAchievement = getFormattedAchievement(achievement);
     checkboxList.innerHTML += formattedAchievement;
   }
+  updateProgressBar();
 }
 
 function getFormattedAchievement(achievement) {
   return `
-        <li>
-                <input class="achievementBox" type="checkbox" name="${achievement.name}" value="${
-    achievement.name
-  }" ${achievement.checked ? "checked" : ""}>
-                <label class="achievementLabel" for="${achievement.name}">${
-    achievement.label
-  }</label>
+        <li class="achievementItem ${achievement.checked ? "completed" : ""}">
+            <div class="achievementContent">
+                <span class="achievementLabel">${achievement.label}</span>
+                <span class="achievementCheckmark">&#10003;</span>
+            </div>
         </li>
         `;
 }
+
+function updateProgressBar() {
+  const totalAchievements = ACHIEVEMENTS.length;
+  const completedAchievements = ACHIEVEMENTS.filter((a) => a.checked).length;
+  const progressPercentage = Math.round((completedAchievements / totalAchievements) * 100);
+
+  const progressFill = document.querySelector(".progressFill");
+  const progressText = document.querySelector(".progressText");
+
+  progressFill.style.width = `${progressPercentage}%`;
+  progressText.textContent = `${progressPercentage}% Completed`;
+}
+
+document.addEventListener("click", (e) => {
+  if (e.target.closest(".achievementItem")) {
+    const item = e.target.closest(".achievementItem");
+    const achievementName = item.querySelector(".achievementLabel").textContent.trim();
+
+    const achievement = ACHIEVEMENTS.find((ach) => ach.label === achievementName);
+    if (achievement) {
+      achievement.checked = !achievement.checked;
+      item.classList.toggle("completed");
+      updateProgressBar();
+    }
+  }
+});
 
 fillAchievementList();
